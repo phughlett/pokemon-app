@@ -54,8 +54,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
-    width: '80%',
-
+    width: '80%'
   },
 }));
 
@@ -63,7 +62,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 export default function SearchAppBar(props) {
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1, marginBottom: '50px' }}>
       <AppBar position="static">
         <Toolbar>
           <Typography
@@ -80,7 +79,7 @@ export default function SearchAppBar(props) {
             </SearchIconWrapper>
             <StyledInputBase
               onKeyUp={props.handleChange}
-              placeholder="Man"        
+              placeholder="Pokemon"        
             />
             
           </Search>
