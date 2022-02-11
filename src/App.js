@@ -12,11 +12,20 @@ class App extends Component {
       searchName: ''
     };
     this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
 
   }
   handleChange = (event) => {
     this.setState({ searchName: event.target.value, clean: false });
     console.log(this.state.searchName)
+    if(event.key == 'Enter' || event == 'click'){
+      this.handleSubmit()
+    }
+  }
+
+  handleSubmit() {
+    console.log(this.state.searchName)
+    this.componentDidMount()   
   }
 
   welcomeScreenToggle () {
@@ -30,20 +39,25 @@ class App extends Component {
   async componentDidMount() {
     let url = 'https://pokeapi.co/api/v2/pokemon/' + this.state.searchName
     fetch(url)
-    
-    .then(response => response.json())
-    .then((json) => json(json))//t
-    .catch((error) => {
-      console.error('Error:', error);
+    .then((response) => {
+      if (response.status >= 200 && response.status <= 299) {
+        return response.json();
+      } else {
+        throw Error(response.statusText);
+      }
+    })
+    .then((data) => {
+      console.log(data)
+    }).catch((error) => {
+      console.log(error);
     });
   }
 
-  // REMINDER - TALK ABOUT FETCH AND COMPONENTDIDMOUNT AT THE END
   render(){
     let { isWelcome } = this.state
     return (
       <div className="App">
-        <SearchAppBar handleChange= {this.handleChange} />
+        <SearchAppBar handleChange= {this.handleChange} handleSubmit= {this.handleSubmit} />
         {isWelcome ? <Welcome /> : <PokemonData />}
       </div>
     );
