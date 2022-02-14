@@ -15,10 +15,10 @@ export default function PokemonCard(props) {
     stats: pokeData.stats
   }
   return (
-    <Card onClick={(event) => props.changePokemon(selectObj)} sx={{ maxWidth: 1 }}>
+    <Card onClick={(event) => props.changePokemon(selectObj)} sx={{ maxWidth: 200}}>
       <CardActionArea>
         <CardMedia
-            height="100%"
+          // maxHeight="500"
           component="img"    
           image={pokeData.image}
           alt={pokeData.name}

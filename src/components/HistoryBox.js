@@ -9,6 +9,7 @@ export default function HistoryBox(props) {
   for(let i = 1; i < 6; ++i){
       if(props.searchHistory[i]){
         recentArray.push(<PokemonCard
+          sx={{ height: '200px', width: 1}}
           pokeData={props.searchHistory[i]}
           changePokemon= {props.changePokemon}     
           />)
@@ -17,9 +18,9 @@ export default function HistoryBox(props) {
 
 
   return (
-    <Box  sx={{height: '15%' ,margin: '25px', display: 'inline-flex' ,backgroundColor:'yellow'  }}>
+    <Box  sx={{ margin: '25px', display: 'inline-flex' , backgroundColor:'yellow' }}>
         {recentArray}
-    </Box>
+    </Box> 
   );
 
 }
